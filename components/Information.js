@@ -6,9 +6,11 @@ const Information = () => {
   return (
     <View>
       <View style={styles.container}>
-      <Text>react native with thai-nichi</Text>
-      <Text>BY...Chayut Suchitvattanasuk</Text>
-      <Text>Student Id : 1913110332</Text>
+      <Text style = {styles.textStyle}>react native with thai-nichi</Text>
+      <Text style = {{color:"blue",fontSize:15,fontWeight:"bold"}}>
+        BY...Chayut Suchitvattanasuk</Text>
+      <Text style = {[styles.textStyle,styles.warning]}>
+        Student Id : 1913110332</Text>
       <Text>Major: Infotmation Technolgy</Text>
     </View>
     </View>
@@ -23,5 +25,13 @@ const styles = StyleSheet.create({
       backgroundColor:"#C6CFFF",
       alignItems:'Center',
       justifyContent: "Center"
+    },
+    textStyle:{
+      fontSize:20
+    },
+    warning:{
+      fontWeight: "bold",
+      color: "red"
     }
+    
   })
