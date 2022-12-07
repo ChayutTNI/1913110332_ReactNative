@@ -12,6 +12,11 @@ import MyCustomTextWith from './components/MyCustomTextWith'
 import Count from './components/Count'
 import TxtInput2 from './components/TxtInput2'
 import UserPass from './components/UserPass'
+import AlertExample from './components/AlertExample'
+import ImageWithTextinput from './components/ImageWithTextinput'
+import ButtonExample from './components/ButtonExample'
+import Touchable_Example from './components/Touchable_Example'
+import TouchablePractice from './components/TouchablePractice'
 
 const App = () => {
   return (
@@ -27,7 +32,12 @@ const App = () => {
       {/* <MyCustomTextWith/> */}
       {/* <Count num={2} title="Click"/> */}
       {/* <TxtInput2/> */}
-      <UserPass/>
+      {/* <UserPass/> */}
+      {/* <AlertExample/> */}
+      {/* <ImageWithTextinput/> */}
+      {/* <ButtonExample/> */}
+      {/* <Touchable_Example/> */}
+      <TouchablePractice/>
 
     </View>
   )
@@ -43,20 +53,20 @@ export default App
 //   }
 // })
 
-const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      alignItems: 'center',
-      marginTop: 20,
-      backgroundColor: '#ffffff',
-  },
-  input: {
-      width: 250,
-      height: 44,
-      padding: 10,
-      marginTop: 20,
-      marginBottom: 10,
-      backgroundColor: '#e8e8e8'
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//       flex: 1,
+//       alignItems: 'center',
+//       marginTop: 20,
+//       backgroundColor: '#ffffff',
+//   },
+//   input: {
+//       width: 250,
+//       height: 44,
+//       padding: 10,
+//       marginTop: 20,
+//       marginBottom: 10,
+//       backgroundColor: '#e8e8e8'
+//   },
+// });
 
