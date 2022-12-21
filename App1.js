@@ -37,7 +37,7 @@ const App = () => {
       {/* <ImageWithTextinput/> */}
       {/* <ButtonExample/> */}
       {/* <Touchable_Example/> */}
-      <TouchablePractice/>
+      {/* <TouchablePractice/> */}
 
     </View>
   )
