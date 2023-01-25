@@ -27,7 +27,7 @@ const Homescreen = ({ navigation }) => {
             // ),
             headerRight: () => (
                 <HeaderButtons HeaderButtonComponent={IoniconsHeaderButton}>
-                    <Item title="person-add" iconName="person-add" onPress={() => alert('ลงทะเบียน')} />
+                    <Item title="person-add"  iconName="person-add" onPress={() => alert('ลงทะเบียน')}/>
                 </HeaderButtons>
             ),
         });
@@ -38,11 +38,11 @@ const Homescreen = ({ navigation }) => {
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Ionicons name="home" size={30} color="#008b8b" />
             <Text>Home Srcreen</Text>
-            {/* <Button
-                title='เกี่ยวกับเรา'
+            <Button
+                title='Go to About'
                 onPress={() => navigation.navigate('About', {
                     email: 'reactnative@tni.ac.th'
-                })} /> */}
+                })} />
         </View>
     );
 };

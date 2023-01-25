@@ -1,56 +1,103 @@
-import { View, Text, ActivityIndicator, FlatList, Image } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, Text, Button } from 'react-native'
+import React from 'react'
+
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem
+} from '@react-navigation/drawer'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
+import HomeScreen from './screens/HomeScreen'
+import ProductScreen from './screens/ProductScreen'
+import DetailScreen from './screens/DetailScreen'
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { Ionicons } from '@expo/vector-icons';
+import { color } from 'react-native-reanimated'
+
+function CustomDrawerContent(props) {
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem label="Close Drawer" onPress={() => props.navigation.closeDrawer()}/>
+    </DrawerContentScrollView>
+  )
+}
+
+const Dreawer = createDrawerNavigator();
+
+function MyDrawer() {
+  return (
+    <Dreawer.Navigator
+      screenOptions={{
+        drawerStyle: {
+          with: 240,
+        },drawerActiveTintColor:"red"
+      }}
+      useLegacyImplementation
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
+    >
+      <Dreawer.Screen name='Home' component={MyStack1} />
+      <Dreawer.Screen name='Product' component={MyStack2} />
+      {/* <Dreawer.Screen name='Detail' component={MyStack3} /> */}
+
+    </Dreawer.Navigator>
+  )
+}
+
+const Stack = createNativeStackNavigator();
+
+function MyStack1() {
+  return (
+    <Stack.Navigator
+      initialRouteName='HomeScreen'
+      screenOptions={{
+        headerShown:false
+      }}
+    >
+      <Stack.Screen name='HomeScreen' component={HomeScreen} />
+    </Stack.Navigator>
+  )
+}
+
+function MyStack2() {
+  return (
+    <Stack.Navigator
+      initialRouteName='HomeScreen'
+      screenOptions={{
+        headerShown:false
+      }}
+    >
+      <Stack.Screen name='ProductScreen' component={ProductScreen} />
+    </Stack.Navigator>
+  )
+}
+
+function MyStack3() {
+  return (
+    <Stack.Navigator
+      initialRouteName='HomeScreen'
+      screenOptions={{
+        headerShown:false
+      }}
+    >
+      <Stack.Screen name='DetailScreen' component={DetailScreen} />
+    </Stack.Navigator>
+  )
+}
+
+
+
+const Tab = createBottomTabNavigator();
 
 const App = () => {
-
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState();
-  const getarticles = async () => {
-    try {
-      const response = await fetch('https://newsapi.org/v2/top-headlines?country=th&apiKey=ab0d4aca4cea481e8157d31c68eb2b23');
-      const json = await response.json();
-      setData(json.articles)
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    getarticles();
-  }, []);
-
-  const _renderItem = ({ item }) => {
-    return (
-      <View style={{ flex: 1 }}>
-        <View style={{ flex: 1, flexDirection: 'row', margin: 5 }}>
-          <Image
-            resizeMode='cover'
-            source={{ uri: item.urlToImage }}
-            style={{ flex: 1, width: '100%', height: '100%' }} />
-          <View style={{ width: 200, margin: 5 }}>
-            <Text style={{ fontSize: 14, marginBottom: 5 }}>{item.title}</Text>
-            <Text style={{ fontSize: 10}}>{item.source.name}</Text>
-            <Text style={{ fontSize: 10,color:'red'}}>Publish{item.Publish}</Text>
-          </View>
-        </View>
-      </View>
-    )
-  }
-
   return (
-    <View style={{ flex: 1, padding: 24 }}>
-      {isLoading
-        ? <ActivityIndicator size="large" color="#0000ff" />
-        : (
-          <FlatList
-            data={data}
-            keyExtractor={item => item.title}
-            renderItem={_renderItem} />
-        )
-      }
-    </View>
+    <NavigationContainer>
+      <MyDrawer />
+    </NavigationContainer>
   )
 }
 
