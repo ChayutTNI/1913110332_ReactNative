@@ -1,4 +1,4 @@
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button,Image } from 'react-native'
 import React from 'react'
 
 import {
@@ -22,40 +22,58 @@ function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
-      <DrawerItem label="Close Drawer" onPress={() => props.navigation.closeDrawer()}/>
+      <DrawerItem label="Close Drawer" onPress={() => props.navigation.closeDrawer()} />
     </DrawerContentScrollView>
   )
 }
 
-const Dreawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
+
+const Stack = createNativeStackNavigator();
+
+function ProductStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#6666FF'
+        },
+        headerTinColor: '#ffffff',
+        headerTitleStyle: {
+          fonWeight: 'bold'
+        }
+      }}>
+      <Stack.Screen name='Product' component={ProductScreen} />
+      <Stack.Screen name='Detail' component={DetailScreen} />
+    </Stack.Navigator>
+  )
+}
 
 function MyDrawer() {
   return (
-    <Dreawer.Navigator
+    <Drawer.Navigator
       screenOptions={{
         drawerStyle: {
           with: 240,
-        },drawerActiveTintColor:"red"
+        }, drawerActiveTintColor: "red"
       }}
       useLegacyImplementation
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
-      <Dreawer.Screen name='Home' component={MyStack1} />
-      <Dreawer.Screen name='Product' component={MyStack2} />
+      <Drawer.Screen name='Home' component={MyStack1} />
+      <Drawer.Screen name='Product' component={MyStack2} />
       {/* <Dreawer.Screen name='Detail' component={MyStack3} /> */}
 
-    </Dreawer.Navigator>
+    </Drawer.Navigator>
   )
 }
-
-const Stack = createNativeStackNavigator();
 
 function MyStack1() {
   return (
     <Stack.Navigator
       initialRouteName='HomeScreen'
       screenOptions={{
-        headerShown:false
+        headerShown: false
       }}
     >
       <Stack.Screen name='HomeScreen' component={HomeScreen} />
@@ -68,10 +86,10 @@ function MyStack2() {
     <Stack.Navigator
       initialRouteName='HomeScreen'
       screenOptions={{
-        headerShown:false
+        headerShown: false
       }}
     >
-      <Stack.Screen name='ProductScreen' component={ProductScreen} />
+      <Stack.Screen name='ProductScreen' component={ProductStack} />
     </Stack.Navigator>
   )
 }
@@ -81,7 +99,7 @@ function MyStack3() {
     <Stack.Navigator
       initialRouteName='HomeScreen'
       screenOptions={{
-        headerShown:false
+        headerShown: false
       }}
     >
       <Stack.Screen name='DetailScreen' component={DetailScreen} />
